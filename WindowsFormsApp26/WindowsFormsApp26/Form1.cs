@@ -20,6 +20,8 @@ namespace WindowsFormsApp26
         int fileCounter = 0; //Klasördeki Dosya Sayacı
         int progress = 0; //İlerleme(değiştirilen dosya sayısı)
 
+        Bitmap changed;
+        string tempPath;
         private void button2_Click(object sender, EventArgs e)
         {
             DirectoryInfo di = new DirectoryInfo(filepath);
@@ -28,18 +30,31 @@ namespace WindowsFormsApp26
             //Klasördeki tüm dosyaları dolaşır.
             for(int i = 0; i < fi.Length; i++)
             {
-                string tempPath = filepath +"\\"+ fi[i].Name; //Sıradaki dosyanın dosya yolu.
+                try
+                {
+                    tempPath = filepath + "\\" + fi[i].Name; //Sıradaki dosyanın dosya yolu.
+                                                             //çözünürlüğü değiştirilmiş resim
+                    changed = new Bitmap(new Bitmap(tempPath), WIDTH, HEIGHT); //Çöznürlüğü değiştirilmiş resim.
+                    progress++;
+                    label2.Text = "İşlenen Dosya Sayısı: " + progress.ToString();
+                    changed.Save(destpath + "\\" + progress.ToString() + ".png");
+                }
+                catch
+                {
+                    System.GC.Collect();
+                }
+                finally
+                {
+                    //Değişkenleri boşalt.
+                    fi[i] = null;
+                    tempPath = null;
+                    if (changed != null)
+                    {
+                        changed = null;
+                    }
+                }
+               
 
-                //çözünürlüğü değiştirilmiş resim
-                Bitmap changed = new Bitmap(new Bitmap(tempPath), WIDTH, HEIGHT); //Çöznürlüğü değiştirilmiş resim.
-                progress++;
-                label2.Text = "İşlenen Dosya Sayısı: " + progress.ToString();
-                changed.Save(destpath + "\\" + progress.ToString() + ".png");
-
-                //Değişkenleri boşalt.
-                fi[i] = null;
-                changed = null;
-                
             }
         }
 
@@ -61,7 +76,7 @@ namespace WindowsFormsApp26
             FileInfo[] fi = di.GetFiles();
             fileCounter = fi.Length;
             label2.Text = "Dosya Sayısı: " + fileCounter.ToString();
-
+            di = null;
             fi = null;
         }
 
