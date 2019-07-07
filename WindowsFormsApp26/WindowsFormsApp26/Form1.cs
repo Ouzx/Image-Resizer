@@ -33,16 +33,16 @@ namespace WindowsFormsApp26
                 try
                 {
                     tempPath = filepath + "\\" + fi[i].Name; //Sıradaki dosyanın dosya yolu.
-                                                             //çözünürlüğü değiştirilmiş resim
+                    //çözünürlüğü değiştirilmiş resim
                     changed = new Bitmap(new Bitmap(tempPath), WIDTH, HEIGHT); //Çöznürlüğü değiştirilmiş resim.
                     progress++;
                     label2.Text = "İşlenen Dosya Sayısı: " + progress.ToString();
-                    changed.Save(destpath + "\\" + progress.ToString() + ".png");
+                    changed.Save(destpath + "\\" + progress.ToString() + ".jpg");
                 }
                 catch
                 {
-                    System.GC.Collect();
-                }
+                    GC.Collect();
+                }/*
                 finally
                 {
                     //Değişkenleri boşalt.
@@ -52,10 +52,9 @@ namespace WindowsFormsApp26
                     {
                         changed = null;
                     }
-                }
-               
-
+                }*/
             }
+            GC.Collect();
         }
 
         private void button1_Click(object sender, EventArgs e)
