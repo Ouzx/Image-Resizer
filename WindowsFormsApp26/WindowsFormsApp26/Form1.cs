@@ -54,7 +54,7 @@ namespace WindowsFormsApp26
                     }
                 }*/
             }
-            GC.Collect();MessageBox.Show("İşlem Tamamlandı!")
+            GC.Collect();MessageBox.Show("İşlem Tamamlandı!");
         }
 
         private void button1_Click(object sender, EventArgs e)
