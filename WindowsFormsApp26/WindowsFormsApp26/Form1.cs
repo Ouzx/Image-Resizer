@@ -26,7 +26,7 @@ namespace WindowsFormsApp26
         {
             DirectoryInfo di = new DirectoryInfo(filepath);
             FileInfo[] fi = di.GetFiles();
-
+            if(textBox1.Text != "") progress = Convert.ToInt32(textBox1.Text);
             //Klasördeki tüm dosyaları dolaşır.
             for(int i = 0; i < fi.Length; i++)
             {
@@ -35,9 +35,10 @@ namespace WindowsFormsApp26
                     tempPath = filepath + "\\" + fi[i].Name; //Sıradaki dosyanın dosya yolu.
                     //çözünürlüğü değiştirilmiş resim
                     changed = new Bitmap(new Bitmap(tempPath), WIDTH, HEIGHT); //Çöznürlüğü değiştirilmiş resim.
-                    progress++;
                     label2.Text = "İşlenen Dosya Sayısı: " + progress.ToString();
                     changed.Save(destpath + "\\" + progress.ToString() + ".jpg");
+                    progress++;
+
                 }
                 catch
                 {
