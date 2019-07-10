@@ -32,7 +32,7 @@ namespace WindowsFormsApp26
             if(textBox1.Text != "") progress = Convert.ToInt32(textBox1.Text);
             //Klasördeki tüm dosyaları dolaşır.
             i = 0;
-            done = false;
+            
             timer1.Enabled = true;
         }
 
@@ -58,35 +58,45 @@ namespace WindowsFormsApp26
             fi = null;
         }
 
-        bool done = false;
+      
+        int excounter = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
+            timer1.Interval = trackBar1.Value;
+            label7.Text = "Hız: " + timer1.Interval.ToString() + "ms";
             if (i < j)
             {
 
                 try
                 {
                     tempPath = filepath + "\\" + fi[i].Name; //Sıradaki dosyanın dosya yolu.
-                                                             //çözünürlüğü değiştirilmiş resim
+                    //çözünürlüğü değiştirilmiş resim
                     changed = new Bitmap(new Bitmap(tempPath), WIDTH, HEIGHT); //Çöznürlüğü değiştirilmiş resim.
                     label5.Text = "İşlenen Dosya Sayısı: " + progress.ToString();
                     changed.Save(destpath + "\\" + progress.ToString() + ".jpg");
                     progress++;
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    richTextBox1.AppendText(ex.ToString());
+                    richTextBox1.AppendText(ex.ToString() + "\n\n");
                     GC.Collect();
+                    excounter++;
+                    label6.Text = "Exceptions: " + excounter;
                 }
+                
                 i++;
+                if (i == j) cut();
             }
-            else if(!done)
+            else
             {
-                GC.Collect(); MessageBox.Show("İşlem Tamamlandı!");
-                timer1.Enabled = false;
-                done = true;
+                
             }
+        }
+        private void cut()
+        {
+            GC.Collect(); MessageBox.Show("İşlem Tamamlandı!");
+            timer1.Enabled = false;
         }
 
       
