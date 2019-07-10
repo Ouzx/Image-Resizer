@@ -10,6 +10,7 @@ namespace WindowsFormsApp26
         public Form1()
         {
             InitializeComponent();
+            textBox1.Text = "0";
         }
 
         const int WIDTH = 800; //En
@@ -19,43 +20,20 @@ namespace WindowsFormsApp26
         string destpath =""; //Hedef Dosya Yolu
         int fileCounter = 0; //Klasördeki Dosya Sayacı
         int progress = 0; //İlerleme(değiştirilen dosya sayısı)
-
+        int i = 0; int j = 0;
         Bitmap changed;
         string tempPath;
+        FileInfo[] fi;
         private void button2_Click(object sender, EventArgs e)
         {
             DirectoryInfo di = new DirectoryInfo(filepath);
-            FileInfo[] fi = di.GetFiles();
+            fi = di.GetFiles();
+            j = fi.Length;
             if(textBox1.Text != "") progress = Convert.ToInt32(textBox1.Text);
             //Klasördeki tüm dosyaları dolaşır.
-            for(int i = 0; i < fi.Length; i++)
-            {
-                try
-                {
-                    tempPath = filepath + "\\" + fi[i].Name; //Sıradaki dosyanın dosya yolu.
-                    //çözünürlüğü değiştirilmiş resim
-                    changed = new Bitmap(new Bitmap(tempPath), WIDTH, HEIGHT); //Çöznürlüğü değiştirilmiş resim.
-                    label2.Text = "İşlenen Dosya Sayısı: " + progress.ToString();
-                    changed.Save(destpath + "\\" + progress.ToString() + ".jpg");
-                    progress++;
-
-                }
-                catch
-                {
-                    GC.Collect();
-                }/*
-                finally
-                {
-                    //Değişkenleri boşalt.
-                    fi[i] = null;
-                    tempPath = null;
-                    if (changed != null)
-                    {
-                        changed = null;
-                    }
-                }*/
-            }
-            GC.Collect();MessageBox.Show("İşlem Tamamlandı!");
+            i = 0;
+            done = false;
+            timer1.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,7 +43,7 @@ namespace WindowsFormsApp26
             MessageBox.Show("Kaynak Dosya Yolunu Seçiniz:");
             fbd.ShowDialog();
             filepath = fbd.SelectedPath;
-            label1.Text = filepath;
+            label1.Text = "Kaynak Dosya Yolu: " + filepath;
 
             MessageBox.Show("Hedef Dosya Yolunu Seçiniz:");
             fbd.ShowDialog();
@@ -80,6 +58,37 @@ namespace WindowsFormsApp26
             fi = null;
         }
 
+        bool done = false;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (i < j)
+            {
 
+                try
+                {
+                    tempPath = filepath + "\\" + fi[i].Name; //Sıradaki dosyanın dosya yolu.
+                                                             //çözünürlüğü değiştirilmiş resim
+                    changed = new Bitmap(new Bitmap(tempPath), WIDTH, HEIGHT); //Çöznürlüğü değiştirilmiş resim.
+                    label5.Text = "İşlenen Dosya Sayısı: " + progress.ToString();
+                    changed.Save(destpath + "\\" + progress.ToString() + ".jpg");
+                    progress++;
+
+                }
+                catch(Exception ex)
+                {
+                    richTextBox1.AppendText(ex.ToString());
+                    GC.Collect();
+                }
+                i++;
+            }
+            else if(!done)
+            {
+                GC.Collect(); MessageBox.Show("İşlem Tamamlandı!");
+                timer1.Enabled = false;
+                done = true;
+            }
+        }
+
+      
     }
 }

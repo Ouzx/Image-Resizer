@@ -1,0 +1,10 @@
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\bin\Release\WindowsFormsApp26.exe.config
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\bin\Release\WindowsFormsApp26.exe
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\bin\Release\WindowsFormsApp26.pdb
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\obj\Release\WindowsFormsApp26.csprojAssemblyReference.cache
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\obj\Release\WindowsFormsApp26.Form1.resources
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\obj\Release\WindowsFormsApp26.Properties.Resources.resources
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\obj\Release\WindowsFormsApp26.csproj.GenerateResource.cache
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\obj\Release\WindowsFormsApp26.csproj.CoreCompileInputs.cache
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\obj\Release\WindowsFormsApp26.exe
+C:\Users\OZ\Documents\GitHub\Image-Resizer\WindowsFormsApp26\WindowsFormsApp26\obj\Release\WindowsFormsApp26.pdb
