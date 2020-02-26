@@ -7,3 +7,14 @@
 6. Başlat
 Bu adımları uygulayarak binlerce resimini herhangi bir çözünürlükten belirlediğiniz(800x600:inital) çözünürlüğe dönüştürebilirsiniz.
 Bu yöntem yapay zeka eğitimlerinde tek çözünürlükte resimler için kullanbilirsiniz.
+
+[ENG]
+1. Choose file path like contains thousands of images
+2. Choose file path to save resized images
+3. Specify where to start naming(e.g. 1: 1,2,3; 1000: 10001,1002,1003)(int)
+4. Pick speed of resizing per second (1: fast, 100: slow)
+5. Specify resolution of image
+6. Start
+
+With using that script you can resize thousands of images. (Inital res. 800x600)
+I used it to label lots of image with high resoultion.
